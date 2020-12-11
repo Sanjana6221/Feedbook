@@ -1,11 +1,11 @@
 class Post < ApplicationRecord
-  enum privacy: [:public, :private]
+  enum status: [:public_post, :private_post]
 
   #Associations
   has_many :comments, dependent: :destroy
   has_rich_text :description
 
   #Validations
-  validates :title, :description, :privacy, presence: true
+  validates :title, :description, :status, presence: true
   validates :description, length: { minimum: 20 }
 end
