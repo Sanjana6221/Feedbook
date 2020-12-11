@@ -23,6 +23,7 @@ class PostsController < ApplicationController
   # POST /posts
   def create
     @post = Post.new(post_params)
+    @post.images.attach(params[:post][:images])
 
     respond_to do |format|
       if @post.save
@@ -35,6 +36,7 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1
   def update
+    @post.images.attach(params[:post][:images]) if params[:post][:images].present?
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: I18n.t('message.updated') }
@@ -60,6 +62,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :description, :status)
+      params.require(:post).permit(:title, :description, :status, :user_id, images: [])
     end
 end
