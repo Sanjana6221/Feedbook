@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 #  flexible authentication solution for Rails
 gem 'devise'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
