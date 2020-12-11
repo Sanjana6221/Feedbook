@@ -18,8 +18,8 @@
       <tr>
         <td><%= link_to post.id, post_path(post) %></td>
         <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= post.status %></td>
+        <td><%=  truncate(strip_tags(post.rich_text_description.to_s), length: 20 ) %></td>
+        <td><%= Post.statuses[post.status] %></td>
         <td><%=l post.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),

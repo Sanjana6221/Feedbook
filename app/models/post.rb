@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  enum status: [:public_post, :private_post]
+  enum status: {public_post: "Public", private_post: "Private"}
 
   #Associations
   has_many :comments, dependent: :destroy
@@ -7,5 +7,4 @@ class Post < ApplicationRecord
 
   #Validations
   validates :title, :description, :status, presence: true
-  validates :description, length: { minimum: 20 }
 end

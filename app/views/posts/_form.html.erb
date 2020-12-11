@@ -16,23 +16,23 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :title, :class => 'control-label col-lg-2' %>
+    <%= f.label "title*", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :title, :class => 'form-control' %>
+      <%= f.text_field :title, required: true, :class => 'form-control' %>
     </div>
     <%=f.error_span(:title) %>
   </div>
   <div class="form-group">
-    <%= f.label :description, :class => 'control-label col-lg-2' %>
+    <%= f.label "description*", :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.rich_text_area :description, :class => 'form-control' %>
+      <%= f.rich_text_area :description, required: true, :class => 'form-control' %>
     </div>
     <%=f.error_span(:description) %>
   </div>
   <div class="form-group">
     <%= f.label :status, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.text_field :status, :class => 'form-control' %>
+      <%= f.select :status, Post.statuses.values, :class => 'form-control' %>
     </div>
     <%=f.error_span(:status) %>
   </div>
