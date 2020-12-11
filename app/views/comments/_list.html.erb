@@ -1,17 +1,6 @@
-<% @post.comments.each do |comment| %>
-  <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter.name %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.description %>
-  </p>
-
-  <p>
-    <%= link_to 'Destroy Comment', [comment.post, comment],
-                method: :delete,
-                data: { confirm: "Are you sure?" } %>
-  </p>
+<h2>Comments~</h2>
+<% if @post.comments.first.persisted? %>
+  <%= nested_comments @post.comments.arrange(:order => :created_at) %>
+<% else %>
+  <h5>No Comments Yet</h5>
 <% end %>

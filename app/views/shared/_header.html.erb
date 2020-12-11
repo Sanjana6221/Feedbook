@@ -1,8 +1,17 @@
-<% if current_user %>
-  <%= menu_group pull: :left do %>
-    <%= menu_item "Home", root_path %>
-  <% end %>
-  <%= menu_group pull: :right do %>
-    <%= menu_item "Log Out", destroy_user_session_path, method: :delete %>
+<%= nav_bar fixed: :top, brand: "FeedBook", responsive: true do %>
+  <% if current_user %>
+    <%= menu_group pull: :left do %>
+      <%= menu_item "Home", root_path %>
+    <% end %>
+    
+    <%= menu_group pull: :right do %>
+      <%= menu_item current_user.name.capitalize, "#" %>
+      <%= menu_item "Log Out", destroy_user_session_path, method: :delete %>
+    <% end %>
+  <% else %>
+    <%= menu_group pull: :right do %>
+      <%= menu_item "SignUp", new_user_registration_path %>
+      <%= menu_item "LogIn", new_user_session_path %>
+    <% end %>
   <% end %>
 <% end %>

@@ -1,4 +1,5 @@
-<h2>Comment Here~</h2>
+<%= render @comment.parent if @comment.parent %>
+
 <%= form_with model: [ @post, @comment ] do |form| %>
   <%= form.hidden_field :parent_id%>
   <p>
@@ -12,3 +13,5 @@
     <%= form.submit %>
   </p>
 <% end %>
+
+<p><%= link_to "Back to Posts", posts_path %></p>

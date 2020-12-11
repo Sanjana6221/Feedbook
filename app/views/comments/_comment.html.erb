@@ -1,0 +1,17 @@
+<%if !comment.new_record? %>
+  <p>
+    <%= comment.description %>
+    <sub>
+      <b><%= "#{comment.commenter.name.capitalize}" %></b>
+      <% if comment.commenter == current_user %>
+        <%= link_to 'Delete', [comment.post, comment],
+                  method: :delete,
+                  data: { confirm: "Are you sure?" } %>
+      <% end %>
+    </sub>
+  </p>
+
+  <p>
+    <%= link_to 'Reply', new_post_comment_path(:post_id => @post, :parent_id => comment) %>
+  </p>
+<% end %>

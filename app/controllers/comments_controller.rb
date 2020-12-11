@@ -1,19 +1,34 @@
 class CommentsController < ApplicationController
+
+  before_action :set_post, only: [:new, :create, :destroy]
+
+  def new
+    @comment = @post.comments.new(:parent_id => params[:parent_id])
+  end
+
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.create(comment_params)
-    redirect_to post_path(@post)
+    @comment = @post.comments.new(comment_params)
+    if @comment.save
+      redirect_to post_path(@comment.post_id)
+    else
+      render :new
+    end
   end
 
   def destroy
-    @post = Post.find(params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
     redirect_to post_path(@post)
   end
 
   private
-    def comment_params
-      params.require(:comment).permit(:commenter_id, :description)
+
+    def set_post
+      @post = Post.find(params[:post_id])
     end
+
+    def comment_params
+      params.require(:comment).permit(:commenter_id, :description, :parent_id)
+    end
+  #End of private
 end
